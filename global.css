@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable;
+  }
+  .text-edge-outline {
+    -webkit-text-stroke: 1px rgba(24, 24, 27, 0.35);
+  }
+  .dark .text-edge-outline {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  }
+}
+
