@@ -10,18 +10,18 @@
     "fmt": "pnpm rome check . --apply-unsafe && pnpm rome format . --write"
   },
   "dependencies": {
-    "framer-motion": "10.18.0",
+    "framer-motion": "^11.18.0",
     "lucide-react": "0.284.0",
-    "next": "13.5.11",
+    "next": "^15.0.0",
     "next-themes": "^0.4.6",
-    "react": "18.3.1",
-    "react-dom": "18.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "typescript": "5.9.3"
   },
   "devDependencies": {
     "@types/node": "20.19.37",
-    "@types/react": "18.3.28",
-    "@types/react-dom": "18.3.7",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "autoprefixer": "10.4.27",
     "postcss": "8.5.8",
     "postcss-nesting": "12.1.5",
