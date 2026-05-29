@@ -66,3 +66,12 @@ PROJECT_SUMMARY.md
 REBUILD_GUIDE.md
 start.ps1
 start.sh
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+
+!.env.example
