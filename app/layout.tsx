@@ -67,6 +67,12 @@ export default function RootLayout({
     >
       <head>
         <Analytics />
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(sessionStorage.getItem('hero-shown')){document.documentElement.classList.add('hero-static')}else{sessionStorage.setItem('hero-shown','1')}}catch(e){}",
+          }}
+        />
       </head>
       <body className="bg-white dark:bg-black">
         <ThemeProvider>

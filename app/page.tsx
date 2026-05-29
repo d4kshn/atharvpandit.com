@@ -1,4 +1,3 @@
-import { cookies } from "next/headers";
 import { profile } from "@/data/profile";
 import { TopNav } from "./components/top-nav";
 import { Hero } from "./components/sections/hero";
@@ -8,12 +7,11 @@ import { Education } from "./components/sections/education";
 import { CvesPublications } from "./components/sections/cves-publications";
 import { Certifications } from "./components/sections/certifications";
 
-export default async function Home() {
-	const visited = (await cookies()).get("home-visited");
+export default function Home() {
 	return (
 		<div className="relative min-h-screen">
 			<TopNav blogUrl={profile.links.blog} enableScrollSpy />
-			<Hero animate={!visited} />
+			<Hero />
 			<main className="relative">
 				<About />
 				<Experience />
