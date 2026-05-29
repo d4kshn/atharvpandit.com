@@ -30,8 +30,6 @@ export const education: EducationEntry[] = [
 		location: "Indore, India",
 		start: "2018",
 		end: "2022",
-		description:
-			"Specialized in cybersecurity and systems. Active member of the CTF team and security research club.",
 		highlights: [
 			"GPA: 7.54 / 10",
 			"Published undergrad thesis on web authentication flaws",
