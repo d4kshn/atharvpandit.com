@@ -107,4 +107,4 @@ The app runs with no environment variables. Optional:
 
 ## License
 
-Add a license of your choice before publishing.
+Add a license of your choice before publishing. Please mention me somewhere if you like the redesign!! 
