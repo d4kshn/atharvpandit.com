@@ -1,40 +1,31 @@
-FROM node:24-alpine AS base
+# Build and serve the static export (output: "export" → ./out) in a container.
+#
+#   docker build -t atharvpandit .
+#   docker run --rm -p 3000:3000 atharvpandit
+#   → http://localhost:3000
 
-# Install pnpm (version pinned via package.json "packageManager" field)
+# --- Build stage: produce the static site (out/) ---
+FROM node:24-alpine AS builder
+WORKDIR /app
 RUN corepack enable
 
-# --- Dependencies ---
-FROM base AS deps
-WORKDIR /app
+# Install dependencies first (better layer caching)
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 RUN pnpm install --frozen-lockfile
 
-# --- Build ---
-FROM base AS builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
+# Build the static export
 COPY . .
-
-
 RUN pnpm build
 
-# --- Runner ---
-FROM base AS runner
+# --- Runtime stage: serve the static files ---
+FROM node:24-alpine AS runner
 WORKDIR /app
-
 ENV NODE_ENV=production
-ENV PORT=3000
-ENV HOSTNAME="0.0.0.0"
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+# `serve` handles clean URLs (/contact → contact.html) and 404.html
+RUN npm install -g serve@14
 
-COPY --from=builder /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-
-USER nextjs
+COPY --from=builder /app/out ./out
 
 EXPOSE 3000
-
-CMD ["node", "server.js"]
+CMD ["serve", "out", "-l", "3000"]

@@ -1,11 +1,12 @@
 # atharvpandit.com
 
 Personal portfolio template by [Atharv Pandit](https://github.com/d4kshn),
-built with [Next.js 13](https://nextjs.org/),
+built with [Next.js 15](https://nextjs.org/),
 [Tailwind CSS](https://tailwindcss.com/), and TypeScript.
 
 All content lives in typed `data/*.ts` modules — no CMS, no MDX, no
-build-time content pipeline.
+build-time content pipeline. Ships as a **fully static site**
+(`output: "export"`), so it hosts anywhere static.
 
 ## Features
 
@@ -13,7 +14,7 @@ build-time content pipeline.
 - Dark / light theme — system default, user toggle, persisted in localStorage
 - Theme-aware particle background with gentle, lagged cursor repulsion
 - Mouse- and touch-following radial hover light on cards
-- One-time hero entrance animation (cookie-gated per browser session)
+- One-time hero entrance animation (once per browser session, flicker-free)
 - Mobile hamburger menu with always-visible Projects / Blog / Contact
 - Typed content layer — edit one file per section, no CMS to wire up
 
@@ -27,6 +28,23 @@ pnpm dev
 ```
 
 Then open http://localhost:3000.
+
+## Build & run
+
+```bash
+pnpm build     # static export → ./out
+pnpm preview   # serve ./out locally
+```
+
+### Docker
+
+```bash
+docker build -t atharvpandit .
+docker run --rm -p 3000:3000 atharvpandit
+```
+
+Then open http://localhost:3000. The image builds the static export and
+serves `./out`.
 
 ## Make it yours
 
@@ -47,8 +65,8 @@ and `public/favicon.png` with your own marks.
 
 ## Stack
 
-Next.js 13.5 (App Router) · TypeScript (strict, es2022) ·
-Tailwind CSS 3.4 · next-themes · Framer Motion · lucide-react ·
+Next.js 15 (App Router, static export) · React 19 · TypeScript (strict,
+es2022) · Tailwind CSS 3.4 · next-themes · Framer Motion · lucide-react ·
 Rome (formatter + linter).
 
 ## Environment

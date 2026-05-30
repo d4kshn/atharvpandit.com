@@ -1,8 +1,15 @@
 node_modules
 .next
+out
 .git
 .gitignore
+.wrangler
+.vscode
+.claude
 *.md
 !README.md
 .env
 .env.*
+errors.txt
+Dockerfile
+.dockerignore
