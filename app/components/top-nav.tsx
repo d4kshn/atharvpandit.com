@@ -101,6 +101,30 @@ export const TopNav: React.FC<TopNavProps> = ({
 	const renderItem = (item: NavItem) => {
 		if (item.kind === "section") {
 			const isActive = enableScrollSpy && activeId === item.id;
+			// Home links to "/" (not "/#hero") so the URL stays clean. On the
+			// home page we smooth-scroll to top and strip any "#section" hash;
+			// from other routes we navigate home.
+			if (item.id === "hero") {
+				return (
+					<Link
+						key={item.id}
+						href="/"
+						onClick={(e) => {
+							setMenuOpen(false);
+							if (pathname === "/") {
+								e.preventDefault();
+								window.scrollTo({ top: 0, behavior: "smooth" });
+								window.history.replaceState(null, "", "/");
+							}
+						}}
+						className={`${linkBase} ${isActive ? active : inactive} ${
+							isActive ? `underline underline-offset-8 ${decoration}` : ""
+						}`}
+					>
+						{item.label}
+					</Link>
+				);
+			}
 			return (
 				<a
 					key={item.id}
