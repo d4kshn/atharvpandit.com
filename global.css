@@ -17,12 +17,9 @@
 
 /* Hero entrance animation gating. When `html.hero-static` is present (set by
    the inline script in app/layout.tsx for repeat visits, and after the first
-   play by visit-tracker.tsx), the entrance animation is skipped: revealed
-   elements render settled and the animated divider lines are hidden. */
+   play by visit-tracker.tsx), the staggered fade-up is skipped and the hero
+   elements render settled. */
 html.hero-static .hero-reveal {
   animation: none;
-}
-html.hero-static .hero-divider {
-  display: none;
 }
 
