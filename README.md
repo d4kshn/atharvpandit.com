@@ -39,8 +39,8 @@ pnpm preview   # serve ./out locally
 ### Docker
 
 ```bash
-docker build -t atharvpandit .
-docker run --rm -p 3000:3000 atharvpandit
+docker build -t atharvpandit.com .
+docker run --rm -p 3000:3000 --name atharvpandit.com atharvpandit.com
 ```
 
 Then open http://localhost:3000. The image builds the static export and

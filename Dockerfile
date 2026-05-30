@@ -1,7 +1,7 @@
 # Build and serve the static export (output: "export" → ./out) in a container.
 #
-#   docker build -t atharvpandit .
-#   docker run --rm -p 3000:3000 atharvpandit
+#   docker build -t atharvpandit.com .
+#   docker run --rm -p 3000:3000 --name atharvpandit.com atharvpandit.com
 #   → http://localhost:3000
 
 # --- Build stage: produce the static site (out/) ---
