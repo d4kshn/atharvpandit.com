@@ -63,6 +63,35 @@ Logo and favicon live in `public/`. Set `profile.logo` to your file's
 path (or `""` to hide it from the hero). Replace `public/favicon.svg`
 and `public/favicon.png` with your own marks.
 
+### Forking checklist
+
+If you're using this as a starting point, swap out the personal bits:
+
+- [ ] `data/*.ts` — your experience, education, CVEs, certs, projects
+- [ ] `data/profile.ts` — name, alias, tagline, bio, social links
+- [ ] `public/favicon.svg`, `public/favicon.png`, and your hero logo
+      (e.g. `public/d4kshn-logo.png` → your own, then update `profile.logo`)
+- [ ] `package.json` `name`
+- [ ] `wrangler.jsonc` `name` — set to *your* Worker name (see Deploy below)
+- [ ] `app/layout.tsx` — set `metadata.metadataBase` to your domain once you
+      have one (removes the build-time `metadataBase` warning)
+- [ ] `CLAUDE.md` — project notes written for this repo; tweak or delete
+
+## Deploy
+
+The app is a plain static export (`pnpm build` → `out/`), so it hosts on any
+static host — Cloudflare, Netlify, GitHub Pages, S3, etc. Just serve `out/`.
+
+**Cloudflare (optional, what this repo is set up for):** `wrangler.jsonc` is an
+assets-only Worker serving `./out`. Change its `name` to your own Worker, then:
+
+```bash
+pnpm deploy    # next build && wrangler deploy
+```
+
+If you deploy somewhere else, `wrangler.jsonc`, the `wrangler` dependency, and
+`public/_headers` (Cloudflare cache headers) are safe to delete.
+
 ## Stack
 
 Next.js 15 (App Router, static export) · React 19 · TypeScript (strict,
